@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Gino De Riggi</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Hidden checkbox controlling the theme -->
+<input type="checkbox" id="theme-toggle" class="theme-toggle">
+
+<nav class="navbar">
+    <div class="nav-links">
+        <a href="#accueil">Home</a>
+        <a href="#parcours">Education</a>
+        <a href="#competences">Skills</a>
+        <a href="#contact">Contact</a>
+    </div>
+    <div class="nav-actions">
+        <label for="theme-toggle" class="btn btn-theme" title="Toggle theme">
+            <span class="sr-only">Toggle theme</span>
+        </label>
+        <a href="index.html" class="btn" hreflang="fr" title="Passer en français">FR</a>
+    </div>
+</nav>
+
+<header class="entete" id="accueil">
+    <h1 class="prenom">Gino De Riggi</h1>
+    <p class="dessous">Networks & Telecommunications student – IUT of Béziers</p>
+</header>
+
+<main>
+    <section id="parcours">
+        <h2 class="section-title">Education</h2>
+
+        <div class="date1">
+            <div class="bloc-gauche">
+                <span class="annee1">1st year</span>
+                <span class="sous-titre-role">Networks & Telecommunications</span>
+            </div>
+
+            <div class="bloc-droite">
+                <span class="competence1">Networking:</span>
+                <p class="description">
+                    Using Wireshark to analyze traffic and troubleshoot common issues: missing DNS, missing router, incorrect or misconfigured IP address.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="competences">
+        <h2 class="section-title">Skills</h2>
+        <div class="tags">
+            <span class="tag">Wireshark</span>
+            <span class="tag">DNS</span>
+            <span class="tag">Routing</span>
+            <span class="tag">IP Addressing</span>
+            <span class="tag">Cisco Packet Tracer</span>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2 class="section-title">Contact</h2>
+        <p>Have a question or an opportunity? Feel free to get in touch.</p>
+        <a class="btn-contact" href="mailto:ton.email@exemple.com">Send me an email</a>
+    </section>
+</main>
+
+<footer class="footer">
+    <p>© 2026 Gino De Riggi</p>
+</footer>
+
+</body>
+</html>

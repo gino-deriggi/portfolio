@@ -1,21 +1,51 @@
+/* ===== Couleurs : thème clair ===== */
 :root {
     --bg: #f5f7fa;
     --card: #ffffff;
     --text: #1f2937;
-    --muted: #696969;
+    --muted: #6b7280;
     --accent: #2563eb;
     --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    --nav-height: 60px;
+    --icon: "🌙";
 }
 
-body.dark {
+/* Thème sombre activé manuellement (case cochée) */
+:root:has(#theme-toggle:checked) {
     --bg: #0f172a;
     --card: #1e293b;
     --text: #e5e7eb;
     --muted: #9ca3af;
     --accent: #60a5fa;
     --shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    --icon: "☀️";
 }
 
+/* Si le système est en mode sombre : sombre par défaut,
+   et la case cochée repasse en clair */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg: #0f172a;
+        --card: #1e293b;
+        --text: #e5e7eb;
+        --muted: #9ca3af;
+        --accent: #60a5fa;
+        --shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+        --icon: "☀️";
+    }
+
+    :root:has(#theme-toggle:checked) {
+        --bg: #f5f7fa;
+        --card: #ffffff;
+        --text: #1f2937;
+        --muted: #6b7280;
+        --accent: #2563eb;
+        --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        --icon: "🌙";
+    }
+}
+
+/* ===== Base ===== */
 * {
     box-sizing: border-box;
 }
@@ -33,7 +63,24 @@ body {
     transition: background 0.3s, color 0.3s;
 }
 
-/* Navigation */
+/* Case à cocher cachée (mais toujours accessible) */
+.theme-toggle {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Texte réservé aux lecteurs d'écran */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+}
+
+/* ===== Navigation ===== */
 .navbar {
     position: sticky;
     top: 0;
@@ -41,15 +88,23 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 12px 30px;
+    flex-wrap: wrap;
+    gap: 10px;
+    min-height: var(--nav-height);
+    padding: 10px 30px;
     background: var(--card);
     box-shadow: var(--shadow);
+}
+
+.nav-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
 }
 
 .nav-links a {
     color: var(--text);
     text-decoration: none;
-    margin-right: 20px;
     font-weight: 500;
     transition: color 0.2s;
 }
@@ -63,25 +118,42 @@ body {
     gap: 10px;
 }
 
-.btn-icon,
-.btn-lang {
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     border: 2px solid var(--accent);
     background: transparent;
     color: var(--accent);
     border-radius: 8px;
     padding: 6px 12px;
+    min-width: 48px;
     font-weight: bold;
+    font-size: 1rem;
+    text-decoration: none;
     cursor: pointer;
-    transition: all 0.2s;
+    user-select: none;
+    transition: background 0.2s, color 0.2s;
 }
 
-.btn-icon:hover,
-.btn-lang:hover {
+.btn:hover {
     background: var(--accent);
     color: #fff;
 }
 
-/* En-tête */
+/* Icône du bouton thème */
+.btn-theme::before {
+    content: var(--icon);
+}
+
+/* Contour visible au clavier */
+.theme-toggle:focus-visible + .navbar .btn-theme,
+.btn:focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: 2px;
+}
+
+/* ===== En-tête ===== */
 .entete {
     text-align: center;
     padding: 80px 20px 50px;
@@ -95,15 +167,19 @@ body {
 .dessous {
     font-size: 1.1rem;
     color: var(--muted);
-    letter-spacing: 0.2px;
     margin-top: 10px;
 }
 
-/* Sections */
+/* ===== Sections ===== */
 main {
     max-width: 900px;
     margin: 0 auto;
     padding: 0 20px;
+}
+
+section,
+.entete {
+    scroll-margin-top: calc(var(--nav-height) + 20px);
 }
 
 section {
@@ -113,7 +189,6 @@ section {
 .section-title {
     text-align: center;
     margin-bottom: 30px;
-    position: relative;
 }
 
 .section-title::after {
@@ -126,7 +201,7 @@ section {
     border-radius: 2px;
 }
 
-/* Bloc parcours */
+/* ===== Parcours ===== */
 .date1 {
     display: flex;
     justify-content: center;
@@ -136,17 +211,20 @@ section {
     padding: 30px;
     border-radius: 12px;
     box-shadow: var(--shadow);
-    transition: transform 0.2s;
+    transition: transform 0.2s, background 0.3s;
 }
 
-.date1:hover {
-    transform: translateY(-4px);
+@media (hover: hover) {
+    .date1:hover {
+        transform: translateY(-4px);
+    }
 }
 
 .bloc-gauche {
     display: flex;
     flex-direction: column;
     text-align: right;
+    flex-shrink: 0;
 }
 
 .annee1 {
@@ -179,7 +257,7 @@ section {
     overflow-wrap: break-word;
 }
 
-/* Tags compétences */
+/* ===== Compétences ===== */
 .tags {
     display: flex;
     flex-wrap: wrap;
@@ -197,7 +275,7 @@ section {
     box-shadow: var(--shadow);
 }
 
-/* Contact */
+/* ===== Contact ===== */
 #contact {
     text-align: center;
 }
@@ -219,23 +297,37 @@ section {
     transform: translateY(-2px);
 }
 
-/* Footer */
+/* ===== Footer ===== */
 .footer {
     text-align: center;
     padding: 20px;
     color: var(--muted);
 }
 
-/* Responsive */
+/* ===== Responsive ===== */
 @media (max-width: 700px) {
+    :root {
+        --nav-height: 100px;
+    }
+
     .navbar {
         flex-direction: column;
-        gap: 10px;
+        padding: 10px 15px;
+    }
+
+    .nav-links {
+        justify-content: center;
+        gap: 12px;
+    }
+
+    .entete {
+        padding: 50px 20px 30px;
     }
 
     .date1 {
         flex-direction: column;
         text-align: center;
+        padding: 20px;
     }
 
     .bloc-gauche {
