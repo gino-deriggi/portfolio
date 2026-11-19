@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Gino De Riggi</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Barre de navigation -->
+<nav class="navbar">
+    <div class="nav-links">
+        <a href="#accueil" data-i18n="nav_home">Accueil</a>
+        <a href="#parcours" data-i18n="nav_path">Parcours</a>
+        <a href="#competences" data-i18n="nav_skills">Compétences</a>
+        <a href="#contact" data-i18n="nav_contact">Contact</a>
+    </div>
+    <div class="nav-actions">
+        <button id="theme-btn" class="btn-icon" aria-label="Changer de thème">🌙</button>
+        <button id="lang-btn" class="btn-lang" aria-label="Change language">EN</button>
+    </div>
+</nav>
+
+<!-- En-tête -->
+<header class="entete" id="accueil">
+    <h1 class="prenom">Gino De Riggi</h1>
+    <p class="dessous" data-i18n="subtitle">Étudiant en Réseaux et Télécommunications – IUT de Béziers</p>
+</header>
+
+<main>
+    <!-- Parcours -->
+    <section id="parcours">
+        <h2 class="section-title" data-i18n="path_title">Parcours</h2>
+
+        <div class="date1">
+            <div class="bloc-gauche">
+                <span class="annee1" data-i18n="year1">1ère année</span>
+                <span class="sous-titre-role" data-i18n="role1">Réseaux et Télécommunications</span>
+            </div>
+
+            <div class="bloc-droite">
+                <span class="competence1" data-i18n="skill1_title">Réseau :</span>
+                <p class="description" data-i18n="skill1_desc">
+                    Utilisation de Wireshark pour analyser le trafic, et résolution de problèmes courants : DNS manquant, routeur absent, adresse IP incorrecte ou mal configurée.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Compétences -->
+    <section id="competences">
+        <h2 class="section-title" data-i18n="skills_title">Compétences</h2>
+        <div class="tags">
+            <span class="tag">Wireshark</span>
+            <span class="tag">DNS</span>
+            <span class="tag">Routage</span>
+            <span class="tag">Adressage IP</span>
+            <span class="tag">Cisco Packet Tracer</span>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+        <h2 class="section-title" data-i18n="contact_title">Contact</h2>
+        <p data-i18n="contact_text">Une question ou une opportunité ? N'hésitez pas à me contacter.</p>
+        <a class="btn-contact" href="mailto:ton.email@exemple.com" data-i18n="contact_btn">M'envoyer un e-mail</a>
+    </section>
+</main>
+
+<footer class="footer">
+    <p>© 2026 Gino De Riggi</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
