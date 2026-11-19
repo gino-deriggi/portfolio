@@ -1,3 +1,283 @@
+/* =====================================================
+   PORTFOLIO - Gino De Riggi
+   HTML + CSS uniquement (sans JavaScript)
+   ===================================================== */
+
+/* ===== Variables : thème clair (par défaut) ===== */
+:root {
+    --bg: #f4f6fb;
+    --card: #ffffff;
+    --text: #1e1e2f;
+    --muted: #696969;
+    --accent: #2563eb;
+    --accent-contrast: #ffffff;
+    --nav-bg: rgba(255, 255, 255, 0.85);
+    --shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+    --nav-height: 64px;
+    --icone-theme: "🌙";
+}
+
+/* ===== Thème sombre selon le système ===== */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg: #0f172a;
+        --card: #1e293b;
+        --text: #e2e8f0;
+        --muted: #94a3b8;
+        --accent: #60a5fa;
+        --accent-contrast: #0f172a;
+        --nav-bg: rgba(15, 23, 42, 0.85);
+        --shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+        --icone-theme: "☀️";
+    }
+}
+
+/* ===== Bouton coché : on inverse le thème du système ===== */
+/* Système clair + case cochée = sombre */
+:root:has(#theme-toggle:checked) {
+    --bg: #0f172a;
+    --card: #1e293b;
+    --text: #e2e8f0;
+    --muted: #94a3b8;
+    --accent: #60a5fa;
+    --accent-contrast: #0f172a;
+    --nav-bg: rgba(15, 23, 42, 0.85);
+    --shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+    --icone-theme: "☀️";
+}
+
+/* Système sombre + case cochée = clair */
+@media (prefers-color-scheme: dark) {
+    :root:has(#theme-toggle:checked) {
+        --bg: #f4f6fb;
+        --card: #ffffff;
+        --text: #1e1e2f;
+        --muted: #696969;
+        --accent: #2563eb;
+        --accent-contrast: #ffffff;
+        --nav-bg: rgba(255, 255, 255, 0.85);
+        --shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+        --icone-theme: "🌙";
+    }
+}
+
+/* ===== Base ===== */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: var(--nav-height);
+}
+
+body {
+    margin: 0;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    transition: background 0.3s, color 0.3s;
+}
+
+a {
+    color: var(--accent);
+}
+
+/* Case à cocher du thème : cachée */
+.theme-toggle {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Texte lu uniquement par les lecteurs d'écran */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* ===== Barre de navigation ===== */
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    min-height: var(--nav-height);
+    padding: 10px 30px;
+    background: var(--nav-bg);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    box-shadow: var(--shadow);
+}
+
+.nav-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.nav-links a {
+    color: var(--text);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+.nav-links a:hover,
+.nav-links a:focus-visible {
+    color: var(--accent);
+}
+
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* ===== Boutons ===== */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 42px;
+    height: 38px;
+    padding: 0 12px;
+    border: 2px solid var(--accent);
+    border-radius: 8px;
+    background: transparent;
+    color: var(--accent);
+    font-weight: bold;
+    text-decoration: none;
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.2s, color 0.2s;
+}
+
+.btn:hover {
+    background: var(--accent);
+    color: var(--accent-contrast);
+}
+
+.btn-theme::before {
+    content: var(--icone-theme);
+    font-size: 1.1rem;
+}
+
+/* Contour visible au clavier sur le bouton thème */
+.theme-toggle:focus-visible + .navbar .btn-theme {
+    outline: 3px solid var(--accent);
+    outline-offset: 2px;
+}
+
+/* ===== En-tête ===== */
+.entete {
+    text-align: center;
+    padding: 70px 20px 40px;
+}
+
+.prenom {
+    margin: 0;
+    font-size: clamp(2.2rem, 6vw, 3.5rem);
+    font-weight: 800;
+}
+
+.dessous {
+    margin: 10px 0 0;
+    font-size: 16px;
+    color: var(--muted);
+    letter-spacing: 0.2px;
+}
+
+/* ===== Sections ===== */
+main {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+section {
+    padding: 40px 0;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 1.8rem;
+    margin: 0 0 30px;
+}
+
+.section-title::after {
+    content: "";
+    display: block;
+    width: 60px;
+    height: 4px;
+    margin: 10px auto 0;
+    background: var(--accent);
+    border-radius: 2px;
+}
+
+/* ===== Parcours ===== */
+.date1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+    margin: 0 auto;
+    padding: 25px 30px;
+    background: var(--card);
+    border-radius: 14px;
+    box-shadow: var(--shadow);
+}
+
+.bloc-gauche {
+    display: flex;
+    flex-direction: column;
+    text-align: right;
+    min-width: 180px;
+}
+
+.annee1 {
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: var(--accent);
+}
+
+.sous-titre-role {
+    font-weight: bold;
+    font-size: 0.9rem;
+    color: var(--muted);
+}
+
+.bloc-droite {
+    display: flex;
+    flex-direction: column;
+    border-left: 4px solid var(--accent);
+    padding-left: 20px;
+}
+
+.competence1 {
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.description {
+    margin: 5px 0 0;
+    max-width: 450px;
+    overflow-wrap: break-word;
+}
+
 /* ===== Compétences ===== */
 .astuce {
     text-align: center;
@@ -73,31 +353,37 @@
 .note {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 10px;
     padding: 0 18px 12px;
     color: var(--text);
 }
 
-.barre {
-    flex: 1;
-    height: 8px;
-    background: rgba(128, 128, 128, 0.25);
-    border-radius: 999px;
-    overflow: hidden;
+/* Étoiles remplies selon la note : 2.33 → 46,6 % */
+.etoiles {
+    display: inline-block;
+    font-size: 1.3rem;
+    line-height: 1;
+    background: linear-gradient(
+        90deg,
+        #f5b301 calc(var(--note) * 20%),
+        rgba(128, 128, 128, 0.35) calc(var(--note) * 20%)
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: apparition 0.4s ease-out;
 }
 
-/* Largeur calculée à partir de la note : 7 → 70 % */
-.barre span {
-    display: block;
-    height: 100%;
-    width: calc(var(--note) * 10%);
-    background: var(--accent);
-    border-radius: 999px;
-    animation: remplir 0.6s ease-out;
+.etoiles::before {
+    content: "★★★★★";
 }
 
-@keyframes remplir {
-    from { width: 0; }
+@keyframes apparition {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
 }
 
 .note strong {
@@ -105,9 +391,89 @@
     white-space: nowrap;
 }
 
+/* ===== Contact ===== */
+#contact {
+    text-align: center;
+}
+
+.btn-contact {
+    display: inline-block;
+    padding: 12px 28px;
+    background: var(--accent);
+    color: var(--accent-contrast);
+    border-radius: 10px;
+    font-weight: bold;
+    text-decoration: none;
+    box-shadow: var(--shadow);
+    transition: opacity 0.2s, transform 0.2s;
+}
+
+.btn-contact:hover {
+    opacity: 0.85;
+    transform: translateY(-2px);
+}
+
 /* E-mail affiché sous le bouton */
 .email {
     margin-top: 12px;
     color: var(--muted);
     font-size: 0.95rem;
+}
+
+/* ===== Footer ===== */
+.footer {
+    text-align: center;
+    padding: 20px;
+    color: var(--muted);
+}
+
+/* ===== Accessibilité : moins d'animations si demandé ===== */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation: none !important;
+        transition: none !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* ===== Responsive (téléphone) ===== */
+@media (max-width: 700px) {
+    :root {
+        --nav-height: 100px;
+    }
+
+    .navbar {
+        flex-direction: column;
+        padding: 10px 15px;
+    }
+
+    .nav-links {
+        justify-content: center;
+        gap: 12px;
+    }
+
+    .entete {
+        padding: 50px 20px 30px;
+    }
+
+    .date1 {
+        flex-direction: column;
+        text-align: center;
+        padding: 20px;
+    }
+
+    .bloc-gauche {
+        text-align: center;
+        min-width: 0;
+    }
+
+    .bloc-droite {
+        border-left: none;
+        border-top: 4px solid var(--accent);
+        padding-left: 0;
+        padding-top: 15px;
+        text-align: center;
+    }
 }
