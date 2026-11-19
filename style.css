@@ -1,0 +1,72 @@
+body {
+    background-size: cover;
+    margin: 0;
+}
+
+.dessous {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    color: #696969;
+    letter-spacing: 0.2px;
+}
+
+.prenom {
+    width: 100%;
+    text-align: center;
+    font-size: 300%;
+}
+
+.entete {
+    width: 100%;
+    height: 100px;
+    display: grid;
+    text-align: center;
+}
+
+/* Conteneur global qui centre l'ensemble sur la page */
+.date1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px; /* Espace entre le bloc gauche et le bloc droit */
+    margin: 40px auto;
+}
+
+/* Bloc de gauche (Année + Rôle empilés et alignés à droite) */
+.bloc-gauche {
+    display: flex;
+    flex-direction: column;
+    text-align: right;
+}
+
+.annee1 {       
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.sous-titre-role {
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+/* Bloc de droite (avec la barre bleue verticale à gauche) */
+.bloc-droite {
+    border-left: 4px solid blue; 
+    padding-left: 15px;          
+    display: flex;
+    flex-direction: column;
+}
+
+.competence1 {
+    font-weight: bold;
+    font-size: 1.2rem;
+
+}
+
+.description {
+    margin: 5px 0 0 0;
+    border: 4px ;
+    border-radius: 5px;
+    inline-size: 200px;
+    overflow-wrap: break-word;
+}
