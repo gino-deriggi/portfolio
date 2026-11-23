@@ -26,6 +26,11 @@
     });
   }
 
+  const pastillesCompetences = document.querySelectorAll('.skills-section .skill-dot.is-filled');
+  pastillesCompetences.forEach((pastille, index) => {
+    pastille.style.setProperty('--skill-dot-order', String(index));
+  });
+
   const elementsReveal = document.querySelectorAll('.reveal');
   const mouvementReduit = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if ('IntersectionObserver' in window && !mouvementReduit) {
