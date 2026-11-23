@@ -2,96 +2,88 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
+  <script>
+    // Active les états animés uniquement lorsque JavaScript est disponible.
+    document.documentElement.classList.add('js');
+    // Applique le thème enregistré avant le premier rendu pour éviter un flash.
+    try {
+      const themeEnregistre = localStorage.getItem('portfolio-theme');
+      const themeSysteme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      document.documentElement.dataset.theme = themeEnregistre === 'dark' || themeEnregistre === 'light' ? themeEnregistre : themeSysteme;
+    } catch (erreur) {
+      document.documentElement.dataset.theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    }
+  </script>
+
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Portfolio of Gino De Riggi, Networks & Telecommunications student at IUT de Béziers.">
-  <meta name="theme-color" content="#ffffff">
-  <title>Gino De Riggi — Networks & Telecommunications</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM%2BSans:wght@400;500;600;700&amp;family=Newsreader%3Aopsz,wght@6..72,400;6..72,500&amp;display=swap" rel="stylesheet">
+  <title>Gino De Riggi — Portfolio</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header class="site-header">
+  <header class="site-header" id="home">
     <div class="header-inner">
-      <a class="brand" href="#home" aria-label="Gino De Riggi, home"><span class="brand-mark">G<span>.</span></span><span class="brand-name">Gino De Riggi<small>NETWORKS · TELECOMS</small></span></a>
-      <nav class="main-nav" aria-label="Main navigation">
-        <a href="#about">About</a><a href="#skills">Skills</a><a href="#projects">Projects</a><a href="#contact">Contact</a>
-      </nav>
-      <div class="language" aria-label="Language"><a href="index.html" lang="fr" hreflang="fr">FR</a><span class="lang-divider">|</span><span aria-current="page">EN</span></div>
+      <div class="entete">
+        <p><strong class="prenom">Gino De Riggi</strong><br><span class="dessous">Networks &amp; Telecommunications student · IUT de Béziers</span></p>
+      </div>
+      <nav class="language" aria-label="Language"><a href="index.html" lang="fr" hreflang="fr">FR</a><span aria-hidden="true">|</span><span aria-current="page">EN</span></nav>
     </div>
+    <nav class="main-nav" aria-label="Main navigation">
+      <a href="#about">About</a><a href="#education">Education</a><a href="#skills">Skills</a><a href="#projects">Projects</a><a href="#contact">Contact</a>
+    <button class="theme-toggle" type="button" aria-label="Switch to dark mode" aria-pressed="false" title="Toggle color theme"><svg class="theme-icon theme-icon-sun" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/></svg><svg class="theme-icon theme-icon-moon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20.4 15.2A8.5 8.5 0 0 1 8.8 3.6 8.6 8.6 0 1 0 20.4 15.2Z"/></svg></button>
+    </nav>
   </header>
-  <main>
-    <section class="hero wrap" id="home" aria-labelledby="hero-title">
-      <div class="hero-copy">
-        <p class="eyebrow"><span class="eyebrow-line"></span>STUDENT · IUT DE BÉZIERS</p>
-        <h1 id="hero-title">Gino<br><em>De Riggi</em><span class="accent-dot">.</span></h1>
-        <p class="hero-role">Networks &amp; Telecommunications student</p>
-        <p class="hero-intro">Curious about what connects systems, I’m building my foundations in networking and telecommunications through hands-on learning.</p>
-        <div class="hero-actions"><a class="button button-primary" href="#projects">Explore my projects <span aria-hidden="true">↘</span></a><a class="button button-secondary" href="#contact">Get in touch <span aria-hidden="true">↗</span></a></div>
-      </div>
-      <div class="hero-visual" aria-label="Illustration of a network topology">
-        <div class="visual-label"><span>TOPOLOGY / 01</span><span>BÉZIERS, FR</span></div>
-        <svg class="network-art" viewBox="0 0 480 420" role="img" aria-labelledby="network-title network-desc">
-          <title id="network-title">A network of interconnected nodes</title><desc id="network-desc">Dots connected by fine lines around a highlighted central node.</desc>
-          <g class="grid-lines"><path d="M40 0V420M120 0V420M200 0V420M280 0V420M360 0V420M440 0V420M0 50H480M0 130H480M0 210H480M0 290H480M0 370H480"/></g>
-          <g class="connections"><path d="M83 100 184 145 287 74 390 136 350 265 242 222 145 320 83 100M184 145 145 320M287 74 242 222 350 265M390 136 242 222M83 100 242 222M350 265 145 320"/></g>
-          <g class="nodes"><circle cx="83" cy="100" r="5"/><circle cx="184" cy="145" r="5"/><circle cx="287" cy="74" r="5"/><circle cx="390" cy="136" r="5"/><circle cx="350" cy="265" r="5"/><circle cx="145" cy="320" r="5"/></g>
-          <circle class="core-halo" cx="242" cy="222" r="23"/><circle class="core" cx="242" cy="222" r="8"/>
-          <g class="node-labels"><text x="64" y="86">GW.01</text><text x="355" y="121">SW.03</text><text x="265" y="245">LOCAL</text></g>
-        </svg>
-        <div class="visual-caption"><span>NETWORKS / SYSTEMS</span><span class="caption-status"><i></i> LEARNING IN PROGRESS</span></div>
-        <span class="visual-index" aria-hidden="true">43° 20′ N<br>03° 13′ E</span>
-      </div>
-      <a class="scroll-cue" href="#about"><span>SCROLL TO EXPLORE</span><span aria-hidden="true">↓</span></a>
+  <main class="content">
+    <section class="intro reveal" aria-labelledby="intro-title">
+      <p class="kicker">PORTFOLIO · IUT DE BÉZIERS</p>
+      <h1 id="intro-title">Networks &amp; telecommunications</h1>
+      <p>I’m a Networks &amp; Telecommunications student developing my skills in networking, systems and telecommunications through coursework and hands-on practice.</p>
     </section>
-
-    <section class="section about-section" id="about" aria-labelledby="about-title">
-      <div class="wrap section-grid">
-        <div class="section-label"><span class="section-number">01</span><span>ABOUT</span></div>
-        <div class="about-copy"><p class="eyebrow">LEARN · CONFIGURE · UNDERSTAND</p><h2 id="about-title">Connecting the dots,<br><em>one packet at a time.</em></h2><p class="body-copy">I’m a Networks &amp; Telecommunications student at IUT de Béziers. I’m interested in how digital infrastructure is designed, configured and secured.</p><p class="body-copy">My degree lets me explore networking, systems and telecommunications through coursework and practical lab work. Here, I share the skills I’m developing and projects along the way.</p></div>
-        <aside class="timeline" aria-label="Education timeline">
-          <h3 class="timeline-heading">EDUCATION</h3>
-          <div class="timeline-item"><span class="timeline-dot"></span><p class="timeline-date">PREVIOUS EDUCATION</p><h4>Baccalaureate</h4><p>A first milestone before choosing to pursue networking.</p></div>
-          <div class="timeline-item timeline-current"><span class="timeline-dot"></span><p class="timeline-date">CURRENT PROGRAMME</p><h4>BUT Networks &amp; Telecommunications</h4><p>IUT de Béziers · University of Montpellier</p></div>
-        </aside>
-      </div>
+    <section class="section reveal" id="about" aria-labelledby="about-title">
+      <h2 id="about-title">About</h2>
+      <p>I’m Gino De Riggi, a student at IUT de Béziers. I’m interested in how networks and digital infrastructure work, as well as the tools used to configure, observe and troubleshoot them.</p>
     </section>
-
-    <section class="section skills-section" id="skills" aria-labelledby="skills-title">
-      <div class="wrap">
-        <div class="section-label"><span class="section-number">02</span><span>SKILLS</span></div>
-        <div class="section-heading"><div><p class="eyebrow">TOOLS &amp; AREAS EXPLORED</p><h2 id="skills-title">Building the basics.<br><em>Growing from here.</em></h2></div><p class="heading-aside">An overview of topics and tools encountered throughout my studies.</p></div>
-        <div class="skills-grid">
-          <article class="skill-card"><span class="skill-index">01 / NETWORKS</span><span class="skill-icon icon-network" aria-hidden="true"><i></i><i></i><i></i><i></i><b></b></span><h3>Cisco networking</h3><p>Routing · VLANs · Configuration</p></article>
-          <article class="skill-card"><span class="skill-index">02 / SYSTEMS</span><span class="skill-icon icon-terminal" aria-hidden="true">$_</span><h3>Linux</h3><p>Command line · System environment</p></article>
-          <article class="skill-card"><span class="skill-index">03 / ANALYSIS</span><span class="skill-icon icon-packets" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><h3>Wireshark</h3><p>Packet analysis · Network troubleshooting</p></article>
-          <article class="skill-card"><span class="skill-index">04 / SCRIPTING</span><span class="skill-icon icon-code" aria-hidden="true">{ }</span><h3>Python</h3><p>First scripts · Programming fundamentals</p></article>
-          <article class="skill-card"><span class="skill-index">05 / WEB</span><span class="skill-icon icon-web" aria-hidden="true">&lt;/&gt;</span><h3>HTML &amp; CSS</h3><p>Structure · Responsive layouts</p></article>
-          <article class="skill-card"><span class="skill-index">06 / TRANSMISSION</span><span class="skill-icon icon-fibre" aria-hidden="true">✳</span><h3>Fibre &amp; telecoms</h3><p>Transmission · Physical media</p></article>
-        </div>
-        <p class="skills-note">SKILLS IN DEVELOPMENT · THIS LIST WILL GROW THROUGHOUT MY STUDIES.</p>
+    <section class="section reveal" id="education" aria-labelledby="path-title">
+      <h2 id="path-title">Education</h2>
+      <ol class="timeline">
+        <li><span class="timeline-label">Previous education</span><h3>Baccalaureate</h3><p>Secondary education before continuing to a BUT degree.</p></li>
+        <li><span class="timeline-label">Current programme</span><h3>BUT Networks &amp; Telecommunications</h3><p>IUT de Béziers · University of Montpellier</p></li>
+      </ol>
+    </section>
+    <section class="section reveal" id="skills" aria-labelledby="skills-title">
+      <h2 id="skills-title">Skills</h2>
+      <p class="section-lead">Topics and tools covered during my studies; skills are still developing.</p>
+      <ul class="skills-list">
+        <li><strong>Cisco networking</strong><span>VLANs, configuration and routing</span></li>
+        <li><strong>Linux</strong><span>Commands and system environment</span></li>
+        <li><strong>Wireshark</strong><span>Packet observation and analysis</span></li>
+        <li><strong>Python</strong><span>Programming and simple scripts</span></li>
+        <li><strong>HTML &amp; CSS</strong><span>Web page structure and presentation</span></li>
+        <li><strong>Fibre &amp; telecoms</strong><span>Transmission and physical media</span></li>
+      </ul>
+    </section>
+    <section class="section reveal" id="projects" aria-labelledby="projects-title">
+      <h2 id="projects-title">Projects</h2>
+      <p class="section-lead">Example topics to personalise with your own work and context.</p>
+      <div class="project-list">
+        <!-- EXAMPLE TO REPLACE: describe a real project completed here. -->
+        <article class="project"><p class="project-label">Example to replace · Networking</p><h3>Segmenting a local network</h3><p>Describe a VLAN configuration and explain routing between subnets.</p></article>
+        <!-- EXAMPLE TO REPLACE: describe a real project completed here. -->
+        <article class="project"><p class="project-label">Example to replace · Systems</p><h3>Getting started with Linux</h3><p>Describe system tasks and observations of network configuration.</p></article>
+        <!-- EXAMPLE TO REPLACE: describe a real project completed here. -->
+        <article class="project"><p class="project-label">Example to replace · Analysis</p><h3>Studying network traffic</h3><p>Present packet analysis with Wireshark and, where relevant, a Python script.</p></article>
       </div>
     </section>
-
-    <section class="section projects-section" id="projects" aria-labelledby="projects-title">
-      <div class="wrap">
-        <div class="section-label"><span class="section-number">03</span><span>PROJECTS</span></div>
-        <div class="section-heading projects-heading"><div><p class="eyebrow">LEARNING BY DOING</p><h2 id="projects-title">Ideas take<br><em>shape here.</em></h2></div><p class="heading-aside">Possible coursework ideas connected to topics in my degree.</p></div>
-        <div class="projects-grid">
-          <article class="project-card"><div class="project-top"><span>LEARNING IDEA / 01</span><span aria-hidden="true">↗</span></div><div class="project-illustration topology-illustration" aria-hidden="true"><i></i><i></i><i></i><i></i><b></b></div><p class="project-category">NETWORKING · CISCO</p><h3>Segment a local network</h3><p class="project-description">Exercise idea: explore VLAN configuration and the principles of routing between subnets.</p><div class="tag-row"><span>VLANs</span><span>Routing</span><span>Packet Tracer</span></div></article>
-          <article class="project-card"><div class="project-top"><span>LEARNING IDEA / 02</span><span aria-hidden="true">↗</span></div><div class="project-illustration terminal-illustration" aria-hidden="true"><span>$ ip addr</span><span>$ ping …</span><span class="terminal-cursor">_</span></div><p class="project-category">LINUX · SYSTEMS</p><h3>Explore a Linux environment</h3><p class="project-description">Exercise idea: practise system commands and inspect a machine’s network configuration.</p><div class="tag-row"><span>Linux</span><span>Terminal</span><span>Networking</span></div></article>
-          <article class="project-card"><div class="project-top"><span>LEARNING IDEA / 03</span><span aria-hidden="true">↗</span></div><div class="project-illustration code-illustration" aria-hidden="true"><span>for packet in flow:</span><span>&nbsp;&nbsp;inspect(packet)</span><span class="code-dot">●</span></div><p class="project-category">PYTHON · ANALYSIS</p><h3>Observe network traffic</h3><p class="project-description">Exercise idea: pair packet analysis with a small script to better understand network flows.</p><div class="tag-row"><span>Python</span><span>Wireshark</span><span>Troubleshooting</span></div></article>
-        </div>
-        <p class="projects-note">These cards describe possible coursework ideas, not completed projects or claimed results.</p>
-      </div>
-    </section>
-
-    <section class="contact-section" id="contact" aria-labelledby="contact-title">
-      <div class="wrap contact-inner"><div class="section-label"><span class="section-number">04</span><span>CONTACT</span></div><div class="contact-content"><p class="eyebrow">A QUESTION, AN IDEA, A CONVERSATION?</p><h2 id="contact-title">Let’s get<br><em>connected.</em></h2><p class="contact-copy">Want to talk networking, studies or a project? Feel free to send me an email.</p><!-- Adresse d’exemple à remplacer par l’adresse e-mail réelle de Gino. --><a class="email-link" href="/cdn-cgi/l/email-protection#ec8b858283c288899e858b8b85ac89948d819c8089c28f8381"><span class="__cf_email__" data-cfemail="07606e6968296362756e60606e47627f666a776b622964686a">[email&#160;protected]</span> <span aria-hidden="true">↗</span></a><p class="email-note">EXAMPLE ADDRESS · REPLACE BEFORE PUBLISHING</p></div><div class="contact-aside"><span>GDR / PORTFOLIO</span><span>BÉZIERS · FRANCE</span></div></div>
+    <section class="section contact reveal" id="contact" aria-labelledby="contact-title">
+      <h2 id="contact-title">Contact</h2>
+      <p>To talk about my studies or projects, feel free to contact me by email.</p>
+      <!-- Example address: replace with the real address before publishing. -->
+      <a class="email" href="/cdn-cgi/l/email-protection#36515f5859185253445f51515f76534e575b465a531855595b"><span class="__cf_email__" data-cfemail="b0d7d9dedf9ed4d5c2d9d7d7d9f0d5c8d1ddc0dcd59ed3dfdd">[email&#160;protected]</span></a>
+      <p class="note">Example email address — replace before publishing.</p>
     </section>
   </main>
-  <footer class="site-footer"><div class="wrap footer-inner"><a class="footer-brand" href="#home">G<span>.</span>DR</a><span>MADE WITH CURIOSITY · BÉZIERS, FRANCE</span><a class="back-top" href="#home">BACK TO TOP ↑</a></div></footer>
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"8607d2a720d14b038279025b2b5a82e5","spa":2}' crossorigin="anonymous"></script>
+  <footer class="site-footer"><a href="#home">Back to top ↑</a><span>Gino De Riggi · Béziers</span></footer>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="script.js" defer></script>
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"8607d2a720d14b038279025b2b5a82e5","spa":2}' crossorigin="anonymous"></script>
 </body>
 </html>
