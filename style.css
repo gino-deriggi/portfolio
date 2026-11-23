@@ -97,9 +97,8 @@ h1 { max-width: 720px; margin: 0; font-size: clamp(2rem, 4.2vw, 3.1rem); line-he
 /* Scroll reveals: retain readable content as a no-JS fallback. */
 .js .reveal { opacity: 0; transform: translateY(13px); transition: opacity .55s ease, transform .55s ease; }
 .js .reveal.visible { opacity: 1; transform: translateY(0); }
-a, button { position: relative; }
-a.is-rippling::after, button.is-rippling::after { position: absolute; top: var(--ripple-y, 50%); left: var(--ripple-x, 50%); width: 12px; height: 12px; border-radius: 50%; background: currentColor; opacity: .2; content: ""; pointer-events: none; transform: translate(-50%, -50%) scale(0); animation: ripple .42s ease-out forwards; }
-@keyframes ripple { to { opacity: 0; transform: translate(-50%, -50%) scale(12); } }
+.page-ripple { position: fixed; z-index: 2147483647; width: 12px; height: 12px; border-radius: 50%; background: var(--blue); opacity: .28; pointer-events: none; transform: translate(-50%, -50%) scale(0); animation: page-ripple .48s ease-out forwards; }
+@keyframes page-ripple { to { opacity: 0; transform: translate(-50%, -50%) scale(12); } }
 @media (max-width: 700px) {
   .site-header { padding: 0 18px; }
   .utility-bar { top: 14px; right: 18px; }
