@@ -1,84 +1,75 @@
-/* Theme, scroll reveals and restrained interaction for the portfolio. */
+/* Portfolio: persistent theme and one-time, lightweight section reveals. */
 (() => {
   'use strict';
 
-  const racine = document.documentElement;
-  const boutonTheme = document.querySelector('.theme-toggle');
-  const langue = racine.lang.toLowerCase().startsWith('fr') ? 'fr' : 'en';
+  const root = document.documentElement;
+  const button = document.querySelector('.theme-toggle');
+  const language = root.lang.toLowerCase().startsWith('fr') ? 'fr' : 'en';
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  function actualiserBoutonTheme() {
-    if (!boutonTheme) return;
-    const sombre = racine.dataset.theme === 'dark';
-    boutonTheme.setAttribute('aria-pressed', String(sombre));
-    boutonTheme.setAttribute('aria-label', langue === 'fr'
-      ? (sombre ? 'Activer le mode jour' : 'Activer le mode nuit')
-      : (sombre ? 'Switch to light mode' : 'Switch to dark mode'));
-    boutonTheme.title = langue === 'fr' ? 'Changer de thème' : 'Toggle color theme';
+  function updateThemeButton() {
+    if (!button) return;
+    const dark = root.dataset.theme === 'dark';
+    button.setAttribute('aria-pressed', String(dark));
+    button.setAttribute('aria-label', language === 'fr'
+      ? (dark ? 'Activer le mode jour' : 'Activer le mode nuit')
+      : (dark ? 'Switch to light mode' : 'Switch to dark mode'));
+    button.title = language === 'fr' ? 'Changer de thème' : 'Toggle color theme';
   }
 
-  const mouvementReduit = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  if (boutonTheme) {
-    actualiserBoutonTheme();
-    let changementEnCours = false;
-    boutonTheme.addEventListener('click', () => {
-      if (changementEnCours) return;
-      changementEnCours = true;
-      boutonTheme.classList.add('is-switching');
-      boutonTheme.setAttribute('aria-busy', 'true');
+  if (button) {
+    updateThemeButton();
+    let switching = false;
+    button.addEventListener('click', () => {
+      if (switching) return;
+      switching = true;
       window.setTimeout(() => {
-        const theme = racine.dataset.theme === 'dark' ? 'light' : 'dark';
-        racine.dataset.theme = theme;
-        try { localStorage.setItem('portfolio-theme', theme); } catch (erreur) { /* Theme remains usable without storage. */ }
-        actualiserBoutonTheme();
-        boutonTheme.classList.remove('is-switching');
-        boutonTheme.removeAttribute('aria-busy');
-        changementEnCours = false;
-      }, mouvementReduit ? 0 : 360);
+        const theme = root.dataset.theme === 'dark' ? 'light' : 'dark';
+        root.dataset.theme = theme;
+        try { localStorage.setItem('portfolio-theme', theme); } catch (error) { /* Storage is optional. */ }
+        updateThemeButton();
+        switching = false;
+      }, 360);
     });
   }
 
-  const segmentsCompetences = document.querySelectorAll('.skills-section .skill-segment.is-filled');
-  segmentsCompetences.forEach((segment, index) => {
-    segment.style.setProperty('--skill-segment-order', String(index));
+  // Keep one skill rating active at a time for pointer and keyboard interaction.
+  const skillCards = Array.from(document.querySelectorAll('.skill-card'));
+  skillCards.forEach((card) => {
+    const activate = () => {
+      skillCards.forEach((other) => {
+        if (other !== card) other.classList.remove('is-rating-active');
+      });
+      card.classList.add('is-rating-active');
+    };
+    const deactivate = () => card.classList.remove('is-rating-active');
+    card.addEventListener('pointerenter', activate);
+    card.addEventListener('pointerleave', () => {
+      if (!card.matches(':focus-within')) deactivate();
+    });
+    card.addEventListener('focusin', activate);
+    card.addEventListener('focusout', (event) => {
+      if (!card.contains(event.relatedTarget) && !card.matches(':hover')) deactivate();
+    });
   });
 
-  // Mark every content unit only when JS is running; without JS it remains visible.
-  const selecteursReveal = 'main section, h1, h2, h3, .skill-group, .skill-card, .timeline > li, .contact > p, .contact .email, .site-footer';
-  document.querySelectorAll(selecteursReveal).forEach((element) => element.classList.add('reveal'));
-  const compteursParParent = new Map();
-  document.querySelectorAll('.reveal').forEach((element) => {
-    const parent = element.parentElement;
-    const ordre = compteursParParent.get(parent) || 0;
-    element.style.setProperty('--reveal-delay', `${Math.min(ordre, 6) * 75}ms`);
-    compteursParParent.set(parent, ordre + 1);
-  });
-  const elementsReveal = document.querySelectorAll('.reveal');
-  if ('IntersectionObserver' in window && !mouvementReduit) {
-    const observateur = new IntersectionObserver((entrees, instance) => {
-      entrees.forEach((entree) => {
-        if (entree.isIntersecting) {
-          entree.target.classList.add('visible');
-          instance.unobserve(entree.target);
+  if (!reducedMotion && 'IntersectionObserver' in window) {
+    root.classList.add('js');
+    const sections = document.querySelectorAll('.intro, .section, .site-footer');
+    sections.forEach((section) => {
+      section.classList.add('reveal');
+      if (section.querySelector('.skill-groups')) section.querySelector('.skill-groups').classList.add('reveal-stagger');
+    });
+    const observer = new IntersectionObserver((entries, currentObserver) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          currentObserver.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.12, rootMargin: '0px 0px -24px 0px' });
-    elementsReveal.forEach((element) => observateur.observe(element));
-  } else {
-    elementsReveal.forEach((element) => element.classList.add('visible'));
+    }, { threshold: 0.08, rootMargin: '0px 0px -36px 0px' });
+    sections.forEach((section) => observer.observe(section));
+  } else if (!reducedMotion) {
+    root.classList.add('js');
   }
-
-  // One page-wide ripple (including buttons and links), without intercepting the pointer.
-  document.addEventListener('pointerdown', (evenement) => {
-    if (mouvementReduit) return;
-
-    const cercle = document.createElement('span');
-    cercle.className = 'page-ripple';
-    cercle.setAttribute('aria-hidden', 'true');
-    cercle.style.left = `${evenement.clientX}px`;
-    cercle.style.top = `${evenement.clientY}px`;
-    cercle.addEventListener('animationend', () => cercle.remove(), { once: true });
-    cercle.addEventListener('animationcancel', () => cercle.remove(), { once: true });
-    document.body.appendChild(cercle);
-  }, true);
 })();

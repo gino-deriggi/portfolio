@@ -3,29 +3,25 @@
 <head>
   <meta charset="utf-8">
   <script>
-    document.documentElement.classList.add('js');
     try {
       const themeEnregistre = localStorage.getItem('portfolio-theme');
-      const themeSysteme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      const themeSysteme = 'light';
       document.documentElement.dataset.theme = themeEnregistre === 'dark' || themeEnregistre === 'light' ? themeEnregistre : themeSysteme;
     } catch (erreur) {
-      document.documentElement.dataset.theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      document.documentElement.dataset.theme = 'light';
     }
   </script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Portfolio of Gino De Riggi, Networks & Telecommunications student at IUT de Béziers.">
   <meta name="theme-color" content="#ffffff">
   <title>Gino De Riggi — Portfolio</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./style.css">
 </head>
 <body>
   <header class="site-header" id="home">
     <div class="utility-bar">
       <nav class="language" aria-label="Language"><a href="index.html" lang="fr" hreflang="fr">FR</a><span aria-hidden="true">|</span><span aria-current="page">EN</span></nav>
-      <button class="theme-toggle" type="button" aria-label="Switch to dark mode" aria-pressed="false" title="Toggle color theme"><svg class="theme-icon theme-icon-sun" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/></svg><svg class="theme-icon theme-icon-moon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20.4 15.2A8.5 8.5 0 0 1 8.8 3.6 8.6 8.6 0 1 0 20.4 15.2Z"/></svg></button>
+      <button class="theme-toggle" type="button" aria-label="Switch to dark mode" aria-pressed="false" title="Toggle color theme"><svg class="theme-icon theme-icon-sun" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/></svg><svg class="theme-icon theme-icon-moon" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20.4 15.2A8.5 8.5 0 0 1 8.8 3.6 8.6 8.6 0 1 0 20.4 15.2Z"/></svg></button>
     </div>
     <div class="hero-head">
       <div class="tech-cloud" aria-hidden="true"><span class="tech tech-cisco">cisco</span><span class="tech tech-linux">LINUX</span><span class="tech tech-wireshark">◈ Wireshark</span><span class="tech tech-python">Py</span><span class="tech tech-html">&lt;/&gt;</span><span class="tech tech-wifi">⌁</span><span class="tech tech-terminal">$_</span><span class="tech tech-network">◎</span></div>
@@ -36,46 +32,46 @@
     </nav>
   </header>
   <main class="content">
-    <section class="intro reveal" aria-labelledby="intro-title">
+    <section class="intro" aria-labelledby="intro-title">
       <p class="kicker">PORTFOLIO <span>·</span> IUT DE BÉZIERS</p>
       <h1 id="intro-title">Networks &amp; telecommunications</h1>
       <p>I’m a Networks &amp; Telecommunications student developing my skills in networking, systems and telecommunications through coursework and hands-on practice.</p>
     </section>
-    <section class="section reveal band-soft" id="about" aria-labelledby="about-title">
+    <section class="section band-soft" id="about" aria-labelledby="about-title">
       <h2 id="about-title">About</h2>
       <p class="section-copy">I’m Gino De Riggi, a student at IUT de Béziers. I’m interested in how networks and digital infrastructure work, as well as the tools used to configure, observe and troubleshoot them.</p>
     </section>
-    <section class="section reveal band-strong" id="education" aria-labelledby="path-title">
+    <section class="section band-strong" id="education" aria-labelledby="path-title">
       <h2 id="path-title">Education</h2>
       <ol class="timeline">
         <li class="date1"><div class="bloc-gauche"><span class="annee1">Current</span><span class="sous-titre-role">1st year</span></div><div class="timeline-rule" aria-hidden="true"></div><div class="bloc-droite"><h3>BUT Networks &amp; Telecommunications</h3><div class="badges"><span>Networking</span><span>Systems</span><span>Telecommunications</span></div><p class="description">IUT de Béziers · University of Montpellier</p></div></li>
       </ol>
     </section>
-    <section class="section reveal skills-section band-soft" id="skills" aria-labelledby="skills-title">
+    <section class="section skills-section band-soft" id="skills" aria-labelledby="skills-title">
       <h2 id="skills-title">Skills</h2>
       <p class="section-lead">Skill level: from 1 (beginner) to 5 (advanced).</p>
       <div class="skill-groups">
         <section class="skill-group" aria-labelledby="network-skills-title">
-          <h3 id="network-skills-title"><span class="skill-group-icon" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><circle cx="12" cy="5" r="2"/><circle cx="5" cy="18" r="2"/><circle cx="19" cy="18" r="2"/><path d="M11 7 6 16m7-9 5 9M7 18h10"/></svg></span>Networking</h3>
+          <h3 id="network-skills-title"><span class="skill-group-icon" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" focusable="false"><circle cx="12" cy="5" r="2"/><circle cx="5" cy="18" r="2"/><circle cx="19" cy="18" r="2"/><path d="M11 7 6 16m7-9 5 9M7 18h10"/></svg></span>Networking</h3>
           <ul class="skill-grid">
-            <li class="skill-card"><div class="skill-copy"><span class="skill-name">Wireshark</span><span class="skill-level">Apprentice</span></div><span class="skill-rating" role="img" aria-label="Level 1 out of 5"><span class="skill-segment is-filled" aria-hidden="true"></span><span class="skill-segment" aria-hidden="true"></span><span class="skill-segment" aria-hidden="true"></span><span class="skill-segment" aria-hidden="true"></span><span class="skill-segment" aria-hidden="true"></span></span></li>
-            <li class="skill-card"><div class="skill-copy"><span class="skill-name">DNS</span><span class="skill-level">Apprentice</span></div><span class="skill-rating" role="img" aria-label="Level 1 out of 5"><span class="skill-segment is-filled" aria-hidden="true"></span><span class="skill-segment" aria-hidden="true"></span><span class="skill-segment" aria-hidden="true"></span><span class="skill-segment" aria-hidden="true"></span><span class="skill-segment" aria-hidden="true"></span></span></li>
-            <li class="skill-card"><div class="skill-copy"><span class="skill-name">Routing</span><span class="skill-level">Apprentice</span></div><span class="skill-rating" role="img" aria-label="Level 1 out of 5"><span class="skill-segment is-filled" aria-hidden="true"></span><span class="skill-segment" aria-hidden="true"></span><span class="skill-segment" aria-hidden="true"></span><span class="skill-segment" aria-hidden="true"></span><span class="skill-segment" aria-hidden="true"></span></span></li>
-            <li class="skill-card"><div class="skill-copy"><span class="skill-name">IP address</span><span class="skill-level">Apprentice</span></div><span class="skill-rating" role="img" aria-label="Level 1 out of 5"><span class="skill-segment is-filled" aria-hidden="true"></span><span class="skill-segment" aria-hidden="true"></span><span class="skill-segment" aria-hidden="true"></span><span class="skill-segment" aria-hidden="true"></span><span class="skill-segment" aria-hidden="true"></span></span></li>
-            <li class="skill-card"><div class="skill-copy"><span class="skill-name">Cisco Packet Tracer</span><span class="skill-level">Apprentice</span></div><span class="skill-rating" role="img" aria-label="Level 1 out of 5"><span class="skill-segment is-filled" aria-hidden="true"></span><span class="skill-segment" aria-hidden="true"></span><span class="skill-segment" aria-hidden="true"></span><span class="skill-segment" aria-hidden="true"></span><span class="skill-segment" aria-hidden="true"></span></span></li>
+            <li class="skill-card" tabindex="0"><div class="skill-copy"><span class="skill-name">Wireshark</span><span class="skill-level">Apprentice</span></div><span class="skill-rating" role="img" aria-label="Level 1 out of 5"><span class="skill-segment is-filled" aria-hidden="true"></span><span class="skill-segment" aria-hidden="true"></span><span class="skill-segment" aria-hidden="true"></span><span class="skill-segment" aria-hidden="true"></span><span class="skill-segment" aria-hidden="true"></span></span></li>
+            <li class="skill-card" tabindex="0"><div class="skill-copy"><span class="skill-name">DNS</span><span class="skill-level">Apprentice</span></div><span class="skill-rating" role="img" aria-label="Level 1 out of 5"><span class="skill-segment is-filled" aria-hidden="true"></span><span class="skill-segment" aria-hidden="true"></span><span class="skill-segment" aria-hidden="true"></span><span class="skill-segment" aria-hidden="true"></span><span class="skill-segment" aria-hidden="true"></span></span></li>
+            <li class="skill-card" tabindex="0"><div class="skill-copy"><span class="skill-name">Routing</span><span class="skill-level">Apprentice</span></div><span class="skill-rating" role="img" aria-label="Level 1 out of 5"><span class="skill-segment is-filled" aria-hidden="true"></span><span class="skill-segment" aria-hidden="true"></span><span class="skill-segment" aria-hidden="true"></span><span class="skill-segment" aria-hidden="true"></span><span class="skill-segment" aria-hidden="true"></span></span></li>
+            <li class="skill-card" tabindex="0"><div class="skill-copy"><span class="skill-name">IP address</span><span class="skill-level">Apprentice</span></div><span class="skill-rating" role="img" aria-label="Level 1 out of 5"><span class="skill-segment is-filled" aria-hidden="true"></span><span class="skill-segment" aria-hidden="true"></span><span class="skill-segment" aria-hidden="true"></span><span class="skill-segment" aria-hidden="true"></span><span class="skill-segment" aria-hidden="true"></span></span></li>
+            <li class="skill-card" tabindex="0"><div class="skill-copy"><span class="skill-name">Cisco Packet Tracer</span><span class="skill-level">Apprentice</span></div><span class="skill-rating" role="img" aria-label="Level 1 out of 5"><span class="skill-segment is-filled" aria-hidden="true"></span><span class="skill-segment" aria-hidden="true"></span><span class="skill-segment" aria-hidden="true"></span><span class="skill-segment" aria-hidden="true"></span><span class="skill-segment" aria-hidden="true"></span></span></li>
           </ul>
         </section>
         <section class="skill-group" aria-labelledby="programming-skills-title">
-          <h3 id="programming-skills-title"><span class="skill-group-icon" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="m8 7-5 5 5 5m8-10 5 5-5 5m-3-13-2 16"/></svg></span>Programming</h3>
+          <h3 id="programming-skills-title"><span class="skill-group-icon" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" focusable="false"><path d="m8 7-5 5 5 5m8-10 5 5-5 5m-3-13-2 16"/></svg></span>Programming</h3>
           <ul class="skill-grid">
-            <li class="skill-card"><div class="skill-copy"><span class="skill-name">Python</span><span class="skill-level">Beginner</span></div><span class="skill-rating" role="img" aria-label="Level 2 out of 5"><span class="skill-segment is-filled" aria-hidden="true"></span><span class="skill-segment is-filled" aria-hidden="true"></span><span class="skill-segment" aria-hidden="true"></span><span class="skill-segment" aria-hidden="true"></span><span class="skill-segment" aria-hidden="true"></span></span></li>
-            <li class="skill-card"><div class="skill-copy"><span class="skill-name">HTML</span><span class="skill-level">Beginner</span></div><span class="skill-rating" role="img" aria-label="Level 2 out of 5"><span class="skill-segment is-filled" aria-hidden="true"></span><span class="skill-segment is-filled" aria-hidden="true"></span><span class="skill-segment" aria-hidden="true"></span><span class="skill-segment" aria-hidden="true"></span><span class="skill-segment" aria-hidden="true"></span></span></li>
-            <li class="skill-card"><div class="skill-copy"><span class="skill-name">CSS</span><span class="skill-level">Beginner</span></div><span class="skill-rating" role="img" aria-label="Level 2 out of 5"><span class="skill-segment is-filled" aria-hidden="true"></span><span class="skill-segment is-filled" aria-hidden="true"></span><span class="skill-segment" aria-hidden="true"></span><span class="skill-segment" aria-hidden="true"></span><span class="skill-segment" aria-hidden="true"></span></span></li>
+            <li class="skill-card" tabindex="0"><div class="skill-copy"><span class="skill-name">Python</span><span class="skill-level">Beginner</span></div><span class="skill-rating" role="img" aria-label="Level 2 out of 5"><span class="skill-segment is-filled" aria-hidden="true"></span><span class="skill-segment is-filled" aria-hidden="true"></span><span class="skill-segment" aria-hidden="true"></span><span class="skill-segment" aria-hidden="true"></span><span class="skill-segment" aria-hidden="true"></span></span></li>
+            <li class="skill-card" tabindex="0"><div class="skill-copy"><span class="skill-name">HTML</span><span class="skill-level">Beginner</span></div><span class="skill-rating" role="img" aria-label="Level 2 out of 5"><span class="skill-segment is-filled" aria-hidden="true"></span><span class="skill-segment is-filled" aria-hidden="true"></span><span class="skill-segment" aria-hidden="true"></span><span class="skill-segment" aria-hidden="true"></span><span class="skill-segment" aria-hidden="true"></span></span></li>
+            <li class="skill-card" tabindex="0"><div class="skill-copy"><span class="skill-name">CSS</span><span class="skill-level">Beginner</span></div><span class="skill-rating" role="img" aria-label="Level 2 out of 5"><span class="skill-segment is-filled" aria-hidden="true"></span><span class="skill-segment is-filled" aria-hidden="true"></span><span class="skill-segment" aria-hidden="true"></span><span class="skill-segment" aria-hidden="true"></span><span class="skill-segment" aria-hidden="true"></span></span></li>
           </ul>
         </section>
       </div>
     </section>
-    <section class="section reveal band-strong" id="projects" aria-labelledby="projects-title">
+    <section class="section band-strong" id="projects" aria-labelledby="projects-title">
       <h2 id="projects-title">Projects</h2>
       <p class="section-lead">Projects developed while learning Python.</p>
       <ol class="timeline project-timeline">
@@ -83,14 +79,16 @@
         <li class="date1"><div class="bloc-gauche"><span class="annee1">02</span><span class="sous-titre-role">Python</span></div><div class="timeline-rule" aria-hidden="true"></div><article class="bloc-droite project"><h3>2D game in Python</h3><div class="badges"><span>Python</span></div><p class="description">A simple 2D game with character movement and interactions with the environment.</p></article></li>
       </ol>
     </section>
-    <section class="section contact reveal band-soft" id="contact" aria-labelledby="contact-title">
+    <section class="section contact band-soft" id="contact" aria-labelledby="contact-title">
       <h2 id="contact-title">Contact</h2>
       <p>To talk about my studies or projects, feel free to contact me by email.</p>
-      <a class="email" href="/cdn-cgi/l/email-protection#47202e2928692322352e20202e7607202a262e2b6924282a"><span class="__cf_email__" data-cfemail="e7808e8988c98382958e80808ed6a7808a868e8bc984888a">[email&#160;protected]</span></a>
+      <div class="contact-links">
+        <a class="email" href="mailto:gino.deriggi1@gmail.com">Click to send an email</a>
+        <a class="linkedin-link" href="https://www.linkedin.com/in/VOTRE-PROFIL" target="_blank" rel="noopener noreferrer" aria-label="Visit Gino De Riggi’s LinkedIn profile">LinkedIn</a>
+      </div>
     </section>
   </main>
-  <footer class="site-footer"><a href="#home">Back to top ↑</a><span>Gino De Riggi · Béziers</span></footer>
-  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="script.js" defer></script>
-<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"8607d2a720d14b038279025b2b5a82e5","spa":2}' crossorigin="anonymous"></script>
+  <footer class="site-footer"><a href="#home">Return to top <span class="top-arrow" aria-hidden="true">↑</span></a><span>Gino De Riggi · Béziers</span></footer>
+  <script src="./script.js" defer></script>
 </body>
 </html>
